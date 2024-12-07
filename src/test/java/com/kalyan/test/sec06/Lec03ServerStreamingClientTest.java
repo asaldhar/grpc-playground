@@ -20,7 +20,7 @@ public class Lec03ServerStreamingClientTest extends AbstractTest {
                 .build();
 
 
-       var iterator = blockingStub.withdraw(request);
+       var iterator = bankBlockingStub.withdraw(request);
 
        int count = 0;
        while (iterator.hasNext()) {
@@ -42,7 +42,7 @@ public class Lec03ServerStreamingClientTest extends AbstractTest {
 
        var observer = ResponseObserver.<Money>create();
 
-        stub.withdraw(request, observer);
+        bankAsyncStub.withdraw(request, observer);
         observer.await();
 
         Assertions.assertNull(observer.getThrowable());

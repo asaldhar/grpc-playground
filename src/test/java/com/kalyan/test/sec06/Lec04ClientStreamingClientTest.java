@@ -22,7 +22,7 @@ public class Lec04ClientStreamingClientTest extends AbstractTest {
 
         var responseObserver = ResponseObserver.<AccountBalance>create();
 
-        StreamObserver<DepositRequest> requestObserver = this.stub.deposit(responseObserver);
+        StreamObserver<DepositRequest> requestObserver = this.bankAsyncStub.deposit(responseObserver);
         requestObserver.onNext(DepositRequest.newBuilder().setAccountNumber(1).build());
         IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> Money.newBuilder().setAmount(10).build())
